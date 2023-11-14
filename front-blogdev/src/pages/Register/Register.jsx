@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { userAuthentication } from '../../hooks/userAuthentication'
 
 const Register = () => {
   //#region Controller Services
@@ -7,7 +8,10 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [confirmedPassword, setConfirmedPassword] = useState('')
   const [error, setError] =  useState('')
-  const handlerSubmit = (e) => {
+  
+  const {createUser, error: authError, loading} = userAuthentication()
+  
+  const handlerSubmit = async (e) => {
     e.preventDefault()
     setError('')
     
@@ -22,7 +26,9 @@ const Register = () => {
       return 
     }
 
-    console.table(user)
+    const res = await createUser(user)
+
+    console.table(res)
   }
   //#endregion
 
@@ -39,7 +45,7 @@ const Register = () => {
             required
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
-            placeholder="Entre con seu nomade nome"></input>
+            placeholder="Entre com seu nomade nome"></input>
         </label>
         <label>
           <span>E-mail: </span>
