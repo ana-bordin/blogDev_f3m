@@ -29,7 +29,13 @@ const Register = () => {
     const res = await createUser(user)
 
     console.table(res)
-  }
+}
+    useEffect(() => {
+    if(authError) {
+      setError(authError)
+    }
+  }, [authError])
+
   //#endregion
 
   //#region View Browser Pages
@@ -77,7 +83,8 @@ const Register = () => {
             onChange={(e) => setConfirmedPassword(e.target.value)}
             placeholder="Entre com sua senha"></input>
         </label>
-        <button className="btn">Cadastrar</button>
+        {!loading && <button className="btn">Cadastrar</button>}
+        {loading && <button className="btn">Aguarde...</button>}
         {error && <p className='error'>{error}</p>}
       </form>
     </div>
