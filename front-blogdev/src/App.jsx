@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Register from './pages/Register/Register'
 import Login from './pages/Login/Login'
+import Logout from './pages/Logout/logout'
 
 
 
@@ -20,6 +21,7 @@ function App() {
             <Route path='/about' element={<About />}></Route>
             <Route path='/register' element={<Register />}></Route>
             <Route path='/login' element={<Login />}></Route>
+            <Route path='/logout' element={<Logout />}></Route>
           </Routes>
         </div>
         <Footer />

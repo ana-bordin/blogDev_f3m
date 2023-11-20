@@ -61,14 +61,46 @@ export const userAuthentication = () => {
         }
     }
 
+    async function userLogin(data) {
+        setLoading(true)
+        setError(null)
+
+        signInWithEmailAndPassword(auth, data.email, data.password)
+            .then((userCredential) => {
+                const user = userCredential.user
+                const userName = sessionStorage.setItem("userName", user.displayName)
+                setLoading(false)
+                window.location.href = '/'
+            }).catch((error) => {
+                console.error(error.message)
+                console.table(typeof error.message)
+                let systemErrorMessage = "Ocorreu um erro, tente novamente mais tarde"
+                setError(systemErrorMessage)
+            })
+    }
+
+    async function userLogout() {
+        signOut(auth).then(() => {
+            sessionStorage.removeItem("userName")
+            window.location.href = '/'
+        }).catch((error) => {
+            console.error(error.message)
+            console.table(typeof error.message)
+            let systemErrorMessage = "Ocorreu um erro, tente novamente mais tarde"
+            setError(systemErrorMessage)
+        })
+    }
+
     useEffect(() => {
         return () => setCancelled(true)
     }, [])
-    
+
     return {
-        auth, 
-        createUser, 
-        error, 
+        auth,
+        createUser,
+        userLogin,
+        userLogout,
+        error,
         loading
     }
 }
