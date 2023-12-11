@@ -12,6 +12,7 @@ import Footer from './components/Footer'
 import Register from './pages/Register/Register'
 import Login from './pages/Login/Login'
 import loading from './assets/Loading.gif'
+import CreatePost from './pages/CreatePost/CreatePost'
 
 
 
@@ -41,6 +42,7 @@ function App() {
               <Route path='/about' element={<About />}></Route>
               <Route path='/register' element={<Register />}></Route>
               <Route path='/login' element={<Login />}></Route>
+              <Route path='/createPost' element={<CreatePost />}></Route>
             </Routes>
           </div>
           <Footer />
