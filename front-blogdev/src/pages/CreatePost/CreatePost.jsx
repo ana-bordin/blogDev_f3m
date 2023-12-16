@@ -56,6 +56,7 @@ const CreatePost = () => {
       createBy: user.displayName
     }
     )
+    navigate("/")
   }
 
   return (

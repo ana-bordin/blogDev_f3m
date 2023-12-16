@@ -11,7 +11,7 @@ const About = () => {
           Este projeto consiste em um escopo de blog feito
           com tecnologia React no front-end e Firebase no back-end.
         </p>
-        <Link to="/post/create" className={styles.btn}>
+        <Link to="/CreatePost" className={styles.btn}>
           Criar Post
         </Link>
       </div>

@@ -1,0 +1,43 @@
+.home{    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.search form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: center;
+    margin-bottom: 2em;
+}
+.search div {
+        max-width: 100%;
+        align-items: center;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+}
+.search input, textarea{
+    border: none;
+    border-bottom: 1px solid #999;
+    background-color: transparent;
+    margin-right: 1px;
+}
+.noposts{
+   text-align: center;
+}
+
+.noposts p {
+    margin-bottom: 1.5em;
+}
+
+.noposts a {
+    padding: auto;
+}
+
+.home button {
+    background-color: #18891b;
+    border-radius: 0;
+}

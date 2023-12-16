@@ -13,7 +13,10 @@ import Register from './pages/Register/Register'
 import Login from './pages/Login/Login'
 import loading from './assets/Loading.gif'
 import CreatePost from './pages/CreatePost/CreatePost'
-
+import Dashboard from './pages/Dashboard/Dashboard'
+import Post from './pages/Post/Post'
+import EditPost from './pages/EditPost/EditPost'
+import Search from './pages/Search/Search'
 
 
 function App() {
@@ -35,14 +38,18 @@ function App() {
     <>
       <AuthProvider value={{ user }}>
         <BrowserRouter>
-          <Navbar />
+          <Navbar value={user} />
           <div className='container'>
             <Routes>
               <Route path='/' element={<Home />}></Route>
               <Route path='/about' element={<About />}></Route>
               <Route path='/register' element={<Register />}></Route>
               <Route path='/login' element={<Login />}></Route>
-              <Route path='/createPost' element={<CreatePost />}></Route>
+              <Route path='/post/create' element={user ? <CreatePost/> : <Navigate to="/login"/>}></Route>
+              <Route path='/dashboard' element={user ? <Dashboard /> : <Navigate to="/login"/>}></Route>
+              <Route path='/post/:id' element={<Post />}></Route>
+              <Route path='/post/edit/:id' element={user ? <EditPost/> : <Navigate to="/login"/>}></Route>
+              <Route path='/search' element={<Search />}></Route>
             </Routes>
           </div>
           <Footer />
