@@ -13,6 +13,8 @@ import Register from './pages/Register/Register'
 import Login from './pages/Login/Login'
 import loading from './assets/Loading.gif'
 import CreatePost from './pages/CreatePost/CreatePost'
+import TagSearch from './components/TagSearch'
+import TagSearchResults from './components/TagSearchResults'
 
 
 
@@ -50,6 +52,27 @@ function App() {
       </AuthProvider>
     </>
   )
+  
+    const App = () => {
+      const [searchResults, setSearchResults] = useState([]);
+    
+      const handleTagSearch = (tag) => {
+        // Implemente a lógica para buscar posts por tag no Firestore
+        // e atualizar setSearchResults com os resultados.
+      };
+    
+      return (
+        <div>
+          <CreatePost />
+          <TagSearch onSearch={handleTagSearch} />
+          <TagSearchResults results={searchResults} />
+        </div>
+      );
+    };
+    
+    
+  
+  
 }
 
 export default App

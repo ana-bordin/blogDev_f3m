@@ -11,7 +11,17 @@ const Login = () => {
   const [error, setError] =  useState('')
   const navigate = useNavigate()
   
-  const {login, error: authError, loading} = userAuthentication()
+  const { login, signInWithGoogle, error: authError, loading } = userAuthentication();
+
+  const handleGoogleLogin = async () => {
+    setError('');
+    try {
+        await signInWithGoogle();
+        navigate('/post/create');
+    } catch (error) {
+        setError(error.message);
+    }
+};
   
   const handlerSubmit = async (e) => {
     e.preventDefault()
@@ -59,6 +69,13 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Entre com sua senha"></input>
+           {!loading && (
+                <div>
+                    <button className="btn" onClick={handleGoogleLogin}>
+                        Login com o Google
+                    </button>
+                </div>
+            )}
       </label>
       {!loading && <button className="btn">Login</button>}
       {loading && <button className="btn">Aguarde...</button>}

@@ -5,6 +5,8 @@ import{
     signInWithEmailAndPassword,
     updateProfile,
     signOut,
+    GoogleAuthProvider,
+    signInWithPopup,
 } from 'firebase/auth';
 import { useState, useEffect } from 'react'
 
@@ -92,6 +94,29 @@ export const userAuthentication = () =>{
         }
     }
 
+    const signInWithGoogle = async () => {
+        checkIfIsCancelled();
+        
+        setLoading(true);
+        setError(null);
+
+        const authProvider = new GoogleAuthProvider();
+
+        try {
+            const { user } = await signInWithPopup(auth, authProvider);
+            setLoading(false);
+            return user;
+        } catch (error) {
+            console.error(error.message);
+            console.table(typeof error.message);
+
+            let systemErrorMessage = "Ocorreu um erro ao fazer login com o Google. Tente novamente mais tarde.";
+
+            setLoading(false);
+            setError(systemErrorMessage);
+        }
+    };
+
     const logout = () =>{
         checkIfIsCancelled()
         signOut(auth)
@@ -107,6 +132,7 @@ export const userAuthentication = () =>{
         error,
         loading,
         logout,
-        login
+        login,
+        signInWithGoogle
     }
 }
